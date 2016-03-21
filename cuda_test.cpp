@@ -6,6 +6,11 @@ using namespace std;
 
 int main( )
 {
+    cout << "OpenCV version:\t" << CV_VERSION << endl;
+    cout << "Major version:\t" << CV_MAJOR_VERSION << endl;
+    cout << "Minor version:\t" << CV_MINOR_VERSION << endl;
+    cout << "Subminor version:\t" << CV_SUBMINOR_VERSION << endl << endl;
+  
     int devCount = cv::gpu::getCudaEnabledDeviceCount();
 
     cout << "CUDA enabled devices: " << devCount << endl;
