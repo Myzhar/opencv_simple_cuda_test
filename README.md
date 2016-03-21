@@ -18,3 +18,17 @@ Free memory: 1933MB
 CUDA device active: 0
 ```
 This is the output of the test executed on Nvidia Jetson TX1 board
+
+For the Nvidia Jetson TK1 board you will get this:
+
+```
+CUDA enabled devices: 1
+
+Device #0:
+==========
+GK20A
+Tot memory: 1892MB
+Free memory: 394MB
+
+CUDA device active: 0
+```
