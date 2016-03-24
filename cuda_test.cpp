@@ -1,5 +1,14 @@
-#include <opencv2/core/core.hpp>
+#include <opencv2/core.hpp>
+
+#if (CV_MAJOR_VERSION==2)
 #include <opencv2/gpu/gpu.hpp>
+using namespace cv::gpu;
+#elif (CV_MAJOR_VERSION==3)
+#include <opencv2/cudaarithm.hpp>
+using namespace cv::cuda;
+#endif
+
+#include <stdlib.h>
 #include <iostream>
 
 using namespace std;
@@ -7,12 +16,14 @@ using namespace std;
 int main( )
 {
     cout << endl;
-    cout << "OpenCV version:\t\t" << CV_VERSION << endl;
-    cout << "Major version:\t\t" << CV_MAJOR_VERSION << endl;
-    cout << "Minor version:\t\t" << CV_MINOR_VERSION << endl;
-    cout << "Subminor version:\t" << CV_SUBMINOR_VERSION << endl << endl;
+    cout << "OpenCV version:   " << CV_VERSION << endl;
+    cout << "Major version:    " << CV_MAJOR_VERSION << endl;
+    cout << "Minor version:    " << CV_MINOR_VERSION << endl;
+    cout << "Subminor version: " << CV_SUBMINOR_VERSION << endl << endl;
   
-    int devCount = cv::gpu::getCudaEnabledDeviceCount();
+    int devCount;
+
+    devCount= getCudaEnabledDeviceCount();
 
     cout << "CUDA enabled devices: " << devCount << endl;
 
@@ -28,7 +39,7 @@ int main( )
 
     for( int i=0; i<devCount; i++ )
     {
-        cv::gpu::DeviceInfo devInfo(i);
+        DeviceInfo devInfo(i);
 
         cout  << endl << "Device #" << i << ":" << endl;
         cout << "==========" << endl;
@@ -38,7 +49,7 @@ int main( )
         cout << "Free memory: " << devInfo.freeMemory()/(1024*1024) << "MB" << endl;
     }
 
-    cout  << endl << "CUDA device active: " << cv::gpu::getDevice() << endl  << endl;
+    cout  << endl << "CUDA device active: " << getDevice() << endl  << endl;
 
     return 0;
 }
